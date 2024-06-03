@@ -1,0 +1,105 @@
+#include <iostream>
+
+// Procedure to sum the values of an array
+int sumArrayValues(int arr[], int size) {
+    int sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum += arr[i];
+    }
+    return sum;
+}
+
+// product of array values
+int productArrayValues(int arr[], int size) {
+    int product = 1;
+    for (int i = 0; i < size; i++) {
+        product *= arr[i];
+    }
+    return product;
+}
+
+// sum of std::array values
+int sumArrayValues(std::array<int, 5> arr) {
+    int sum = 0;
+    for (int i = 0; i < arr.size(); i++) {
+        sum += arr[i];
+    }
+    return sum;
+}
+
+// class for a calendar
+class Calendar {
+    public:
+        int daysInMonth(int month) {
+            return days[month - 1];
+        }
+    private:
+        int days[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+};
+
+void calculateDaysBetweenDates(int startMonth, int startDay, int endMonth, int endDay) 
+{
+    Calendar calendar;
+    int days = 0;
+    for (int i = startMonth; i < endMonth; i++) {
+        days += calendar.daysInMonth(i);
+    }
+    days += endDay - startDay;
+    std::cout << "Days between dates: " << days << std::endl;
+}
+
+void calculaHorasTranscurridas(std::datetime start, std::datetime end) 
+{
+    int days = 0;
+    for (int i = startMonth; i < endMonth; i++) {
+        days += calendar.daysInMonth(i);
+    }
+    days += endDay - startDay;
+    std::cout << "Days between dates: " << days << std::endl;
+}
+
+// Escribe dias de la semana
+// En español con std::array de view_string
+void printDaysOfWeek() {
+    std::array<std::string_view, 7> daysOfWeek = {
+        "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"
+    };
+    for (int i = 0; i < daysOfWeek.size(); i++) {
+        std::cout << daysOfWeek[i] << std::endl;
+    }
+}
+
+// Genera números primos hasta 12000. criba de eratostenes
+void generatePrimes() {
+    std::array<bool, 12000> primes;
+    primes.fill(true);
+    primes[0] = false;
+    primes[1] = false;
+    for (int i = 2; i < 12000; i++) {
+        if (primes[i]) {
+            for (int j = i * 2; j < 12000; j += i) {
+                primes[j] = false;
+            }
+        }
+    }
+    for (int i = 0; i < 12000; i++) {
+        if (primes[i]) {
+            std::cout << i << std::endl;
+        }
+    }
+}
+
+
+
+int main() {
+    // Example array
+    int arr[] = {1, 2, 3, 4, 5};
+
+    // Calculate the sum of array values
+    int sum = sumArrayValues(arr, sizeof(arr) / sizeof(arr[0]));
+
+    // Print the sum
+    std::cout << "Sum of array values: " << sum << std::endl;
+
+    return 0;
+}
